@@ -99,9 +99,14 @@
     }
 
     @keyframes float {
-      from { transform: translateY(100vh); }
-      to   { transform: translateY(-10vh); }
-    }
+  from {
+    transform: translateY(110vh);
+  }
+  to {
+    transform: translateY(-120vh);
+  }
+}
+
 
     /* fotos */
     .foto-flutuante {
@@ -115,9 +120,14 @@
     }
 
     @keyframes subirFoto {
-      from { transform: translateY(110vh); }
-      to   { transform: translateY(-15vh); }
-    }
+  from {
+    transform: translateY(120vh);
+  }
+  to {
+    transform: translateY(-130vh);
+  }
+}
+
 
     @media (max-width: 380px) {
       p {
@@ -159,9 +169,9 @@
       heart.className = "heart";
       heart.innerHTML = "💙";
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+      heart.style.animationDuration = (12 + Math.random() * 6) + "s";
       document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 8000);
+      setTimeout(() => heart.remove(), 12000);
     }, 600);
 
     // fotos
@@ -176,11 +186,11 @@
       img.src = fotos[Math.floor(Math.random() * fotos.length)];
       img.className = "foto-flutuante";
       img.style.left = Math.random() * 100 + "vw";
-      img.style.animationDuration = (6 + Math.random() * 6) + "s";
+      img.style.animationDuration = (16 + Math.random() * 8) + "s";
       img.style.width = img.style.height = (40 + Math.random() * 30) + "px";
       document.body.appendChild(img);
       setTimeout(() => img.remove(), 12000);
-    }, 1500);
+    }, 600);
 
     function irParaProxima() {
       window.location.href = "pagina2.html";
