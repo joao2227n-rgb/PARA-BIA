@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Mais uma coisa 💙</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: 20px;
+      background: linear-gradient(135deg, #e0f2ff, #f7fbff);
+      font-family: "Segoe UI", sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .card {
+      position: relative;
+      z-index: 2;
+      background: white;
+      padding: clamp(24px, 5vw, 35px);
+      border-radius: 20px;
+      width: 100%;
+      max-width: 520px;
+      text-align: center;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      animation: fadeUp 1s ease forwards;
+    }
+
+    h1 {
+      margin-bottom: 15px;
+      color: #3b82f6;
+      font-size: clamp(1.4rem, 5vw, 1.7rem);
+    }
+
+    p {
+      font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+      color: #444;
+      line-height: 1.6;
+      min-height: 120px;
+    }
+
+    .assinatura {
+      margin-top: 20px;
+      font-weight: 600;
+      color: #555;
+      font-size: clamp(0.85rem, 2.5vw, 1rem);
+    }
+
+    .btn-voltar {
+      margin-top: 22px;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #60a5fa, #3b82f6);
+      color: white;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 10px 25px rgba(59,130,246,0.35);
+      transition: all 0.25s ease;
+      width: 100%;
+      max-width: 260px;
+    }
+
+    .btn-voltar:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 35px rgba(59,130,246,0.5);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* corações */
+    .heart {
+      position: absolute;
+      color: #93c5fd;
+      font-size: 14px;
+      animation: float linear infinite;
+      opacity: 0.6;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      from { transform: translateY(100vh); }
+      to   { transform: translateY(-10vh); }
+    }
+
+    /* fotos */
+    .foto-flutuante {
+      position: absolute;
+      object-fit: cover;
+      border-radius: 12px;
+      opacity: 0.35;
+      animation: subirFoto linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes subirFoto {
+      from { transform: translateY(110vh); }
+      to   { transform: translateY(-15vh); }
+    }
+
+    @media (max-width: 380px) {
+      p {
+        min-height: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <h1>Agora falando sério 💙</h1>
+    <p id="mensagem"></p>
+    <div class="assinatura">— ATT SEU MELHOR AMIGO (JOÃO)</div>
+
+    <button class="btn-voltar" onclick="voltar()">
+      Voltar ←
+    </button>
+  </div>
+
+  <script>
+    const texto =
+      "Primeiramente, gostaria de me desculpar por não ter ido à sua despedida. Errei, fui moleque, eu sei. Isso é algo que eu realmente me arrependo. " +
+      "Sei que nós não nos falamos muito enquanto você estava lá nos EUA, e isso foi mais culpa minha mesmo. Admito que fiquei com medo de encher o saco, incomodar, essas coisas. " +
+      "Você pode achar que é besteira, mas não é, porque eu ainda estou aprendendo a demonstrar o quanto eu gosto das pessoas — até porque só tenho vocês. " +
+      "E você, em específico, é uma pessoa de quem eu gosto muito, muito mesmo. Você me entende, me ajuda, sempre esteve ali quando precisei, me arruma umas novinhas kkkkkk, me ensinou muita coisa e me ajudou a crescer como pessoa. " +
+      "Sinto sua falta e espero que você saiba o quanto é importante pra mim. Mesmo eu não demonstrando sempre, a sua amizade significa muito. Quero que isso seja infinito, e prometo estar mais presente e não repetir os mesmos erros. " +
+      "De verdade, obrigado por tudo. Eu realmente não sei como te agradecer.";
+
+    let i = 0;
+    function escrever() {
+      if (i < texto.length) {
+        document.getElementById("mensagem").innerHTML += texto.charAt(i);
+        i++;
+        setTimeout(escrever, 45);
+      }
+    }
+    escrever();
+
+    // corações
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💙";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 8000);
+    }, 600);
+
+    // fotos
+    const fotos = [
+      "imgs/foto1.jpeg",
+      "imgs/foto2.jpeg",
+      "imgs/foto3.png"
+    ];
+
+    setInterval(() => {
+      const img = document.createElement("img");
+      img.src = fotos[Math.floor(Math.random() * fotos.length)];
+      img.className = "foto-flutuante";
+      img.style.left = Math.random() * 100 + "vw";
+      img.style.animationDuration = (6 + Math.random() * 6) + "s";
+      img.style.width = img.style.height = (40 + Math.random() * 30) + "px";
+      document.body.appendChild(img);
+      setTimeout(() => img.remove(), 12000);
+    }, 1500);
+
+    function voltar() {
+      window.location.href = "index.html";
+    }
+  </script>
+
+</body>
+</html>
